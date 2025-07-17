@@ -1,0 +1,41 @@
+{
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "run-dev": "concurrently yarn:dev yarn:server",
+    "server": "contemporaries-server",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "prod": "concurrently yarn:start yarn:server",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@chakra-ui/react": "^2.4.6",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@headlessui/react": "^1.7.7",
+    "@next/font": "13.1.1",
+    "@tanstack/react-query": "^4.22.0",
+    "@types/node": "18.11.18",
+    "@types/react": "18.0.26",
+    "@types/react-dom": "18.0.10",
+    "arc": "^0.1.4",
+    "concurrently": "^7.6.0",
+    "eslint": "8.31.0",
+    "eslint-config-next": "13.1.1",
+    "formik": "^2.2.9",
+    "framer-motion": "^8.3.4",
+    "jotai": "^1.13.0",
+    "leaflet": "^1.9.3",
+    "leaflet-providers": "^1.13.0",
+    "next": "13.1.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-icons": "^4.7.1",
+    "react-leaflet": "^4.2.0",
+    "typescript": "4.9.4",
+    "urlcat": "^3.0.0"
+  }
+}

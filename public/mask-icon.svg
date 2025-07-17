@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="45 14 355 390">
+    <defs></defs>
+    <g transform="matrix(1.033333, 0, 0, 1.039124, -6.666647, -5.774796)" data-bx-origin="0.5 0.5">
+        <path style="" transform="matrix(0.707107, -0.707107, -0.707107, -0.707107, 200.000122, 416.421303)" data-bx-origin="0.971404 0.971404" d="M 50 25 H 175 V 175 H 25 V 50 A 25 25 0 0 1 50 25 Z" data-bx-shape="rect 25 25 150 150 25 0 0 0 1@a43058d5"></path>
+        <ellipse style="" cx="200" cy="-168.934" rx="150" ry="150" transform="matrix(1, 0, 0, -1, 0, 0)"></ellipse>
+    </g>
+</svg>
