@@ -79,7 +79,7 @@ export const QueryPage: NextPage<QueryPageProps> = ({ person, jobKey: initialKey
     {
       queryKey: [person.link, "contemporaries", initialKey],
       queryFn: () => fetch(
-        urlcat(`${process.env.API_ROOT}/contemporaries`, person.link, { key, offset: contemporaries.length, ...params })
+        urlcat(`/api/contemporaries`, person.link, { key, offset: contemporaries.length, ...params })
       ).then(
         res => res.json()
       ).then(
