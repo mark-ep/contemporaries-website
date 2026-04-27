@@ -36,7 +36,7 @@ export const PersonCard = ({ person, query, isHighlighted = false }) => {
       bg={isHighlighted ? "blue.100" : "white"}
     >
       <Flex w="full" justifyContent="center" flex={0}>
-        <Avatar src={person.image} name={person.name} size="2xl" />
+        <Avatar src={person.image && `https://commons.wikimedia.org/wiki/Special:FilePath/${person.image}`} name={person.name} size="2xl" />
       </Flex>
       <Stack flex={1}>
         <Stack direction={stackDirection} alignItems={useBreakpointValue({ base: "stretch", md: "baseline" })}>

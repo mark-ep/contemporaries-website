@@ -78,14 +78,14 @@ export const AdvancedSearchForm = ({ onSubmit }) => {
             name="selectedJobs"
             label="Filter by occupation:"
             placeholder="Enter occupation"
-            endpoint="/api/occupations"
+            endpoint="/api/occupations/"
             refetch
           />
           <DropdownField
             name="selectedCountries"
             label="Filter by country:"
             placeholder="Enter country"
-            endpoint="/api/countries"
+            endpoint="/api/countries/"
           />
           <ButtonGroup
             colorScheme="blue"
