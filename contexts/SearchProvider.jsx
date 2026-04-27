@@ -16,7 +16,7 @@ export const SearchProvider = ({ children }) => {
   const router = useRouter();
   const { mutateAsync: get } = useMutation(
     query => fetch(
-      urlcat("/api/contemporaries/search", query)
+      urlcat("/api/search", query)
     ).then(async res => await res.json())
   )
   // const { get } = useFetch(

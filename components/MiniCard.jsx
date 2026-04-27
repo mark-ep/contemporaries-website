@@ -16,7 +16,7 @@ export const MiniCard = ({ person, onClick }) => {
       onClick={onClick}
     >
       <HStack p="1ex" _hover={{ bg: "blue.500", color: "white", ".dates": { color: "gray.300" } }} cursor="pointer" borderRadius="md">
-        <Avatar src={person.image} name={person.name} size="lg" />
+        <Avatar src={person.image && `https://commons.wikimedia.org/wiki/Special:FilePath/${person.image}`} name={person.name} size="lg" />
         <VStack flex={1} alignItems="stretch">
           <HStack alignItems="baseline" justifyContent="flex-start">
             <Heading size="md">{person.name}</Heading>

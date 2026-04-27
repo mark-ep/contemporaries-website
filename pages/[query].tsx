@@ -45,7 +45,7 @@ interface QueryPageProps {
   jobKey: string;
 }
 interface QueryResponse {
-  key: string,
+  id: string,
   done: boolean,
   progress: number,
   total: number,
@@ -79,7 +79,7 @@ export const QueryPage: NextPage<QueryPageProps> = ({ person, jobKey: initialKey
     {
       queryKey: [person.link, "contemporaries", initialKey],
       queryFn: () => fetch(
-        urlcat(`/api/contemporaries`, person.link, { key, offset: contemporaries.length, ...params })
+        urlcat(`/api/contemporaries${person.link}`, { key, offset: contemporaries.length, ...params })
       ).then(
         res => res.json()
       ).then(
@@ -90,7 +90,7 @@ export const QueryPage: NextPage<QueryPageProps> = ({ person, jobKey: initialKey
             setContemporaries([...contemporaries, ...data.contemporaries]);
           }
           else
-            setKey(data.key)
+            setKey(data.id)
           return data;
         }
       ),
@@ -185,8 +185,8 @@ export const QueryPage: NextPage<QueryPageProps> = ({ person, jobKey: initialKey
 export const createQueryKey = async (params: PersonPageParams): Promise<string> => {
   const { query, ...args } = params
   const key = await fetch(
-    urlcat(`${process.env.API_ROOT}/contemporaries`, query, args)
-  ).then(async res => await res.json()).then(data => data.key)
+    urlcat(`${process.env.API_ROOT}contemporaries/${query}`, args)
+  ).then(async res => await res.json()).then(data => data.id)
 
   console.log(key);
   return key;
@@ -194,7 +194,7 @@ export const createQueryKey = async (params: PersonPageParams): Promise<string> 
 
 export async function getPersonData(query: string): Promise<PersonData | undefined> {
   return fetch(
-    urlcat(`${process.env.API_ROOT}/person`, query)
+    `${process.env.API_ROOT}people/${query}/`
   ).then(
     async res => {
       if (res.ok) {

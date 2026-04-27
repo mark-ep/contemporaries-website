@@ -30,7 +30,7 @@ export const PersonMarker = ({
         {/* title: the name of the person */}
         <h3><b><center><font size="+2">{name}</font></center></b></h3>
         {/* image portrait of the person */}
-        <p><center><img src={image} width={200} alt={name} /></center></p>
+        <p><center><img src={image && `https://commons.wikimedia.org/wiki/Special:FilePath/${image}`} width={200} alt={name} /></center></p>
         {/* short description text from wikidata */}
         <p><center>{description}</center></p>
         {/* create control buttons: explore, link to wikipedia, remove from map */}
