@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { Center, Container, Heading, Stack, useBreakpointValue, Image, ButtonGroup, Divider } from "@chakra-ui/react";
+import { Center, Container, Heading, Stack, useBreakpointValue, Image, Divider } from "@chakra-ui/react";
 import { AdvancedSearch } from "../components/AdvancedSearch";
 import ImageStack from "../components/Stack";
 import Link from '../components/Link';
@@ -15,7 +15,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <ImageStack image="/api/mosaic" alt="mosaic" minH="100vh">
+        <ImageStack image={`${process.env.API_ROOT}mosaic/`} alt="mosaic" minH="100vh">
           <Container maxW="container.lg" h="full">
             <Center minH="100vh" w="full">
               <Stack direction={useBreakpointValue({ base: "column", md: "row" })} alignItems="center" w="full">
