@@ -2,7 +2,11 @@ import { Center, Container, Text, Heading, Stack } from "@chakra-ui/react";
 import Head from 'next/head';
 import ImageStack from "../components/Stack";
 
-export default function About() {
+export const getServerSideProps = async () => ({
+  props: { mosaicUrl: `${process.env.API_ROOT}mosaic/` },
+})
+
+export default function About({ mosaicUrl }) {
   return (
     <>
       <Head>
@@ -12,7 +16,7 @@ export default function About() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <ImageStack image="/api/mosaic/" alt="mosaic" minH="100vh">
+        <ImageStack image={mosaicUrl} alt="mosaic" minH="100vh">
           <Container maxW="container.lg" h="full">
             <Center minH="100vh" w="full">
               <Stack spacing="2ex" p="2ex" rounded="xl" bg="blackAlpha.700">

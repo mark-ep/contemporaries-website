@@ -42,7 +42,7 @@ const dumpStateColor: Record<string, string> = {
   running: 'yellow',
 }
 
-export default function Dashboard({ stats }: { stats: DashboardStats }) {
+export default function Dashboard({ stats, mosaicUrl }: { stats: DashboardStats, mosaicUrl: string }) {
   const dump = stats.dump_status
 
   return (
@@ -53,7 +53,7 @@ export default function Dashboard({ stats }: { stats: DashboardStats }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <ImageStack image="/api/mosaic/" alt="mosaic" minH="100vh">
+        <ImageStack image={mosaicUrl} alt="mosaic" minH="100vh">
           <Container maxW="container.lg" py="8">
             <Stack spacing="6" p="6" rounded="xl" bg="blackAlpha.700">
               <Heading>Dashboard</Heading>
@@ -126,5 +126,5 @@ export default function Dashboard({ stats }: { stats: DashboardStats }) {
 export const getServerSideProps: GetServerSideProps = async () => {
   const res = await fetch(`${process.env.API_ROOT}dashboard/stats`)
   const stats: DashboardStats = await res.json()
-  return { props: { stats } }
+  return { props: { stats, mosaicUrl: `${process.env.API_ROOT}mosaic/` } }
 }
