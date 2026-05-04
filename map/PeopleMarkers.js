@@ -42,7 +42,7 @@ export const PeopleMarkers = () => {
     <FeatureGroup>
       {/* generate connections for all the people who have them */}
       {locatedQuery && markers
-        .filter(person => !person.subjectMarker && !!person.has_connections)
+        .filter(person => !person.subjectMarker && !!person.has_connections && person.location != null)
         .map(person =>
           <Connection
             query={locatedQuery}

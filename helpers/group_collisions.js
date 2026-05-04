@@ -17,7 +17,7 @@ export const groupCollisions = (people, tolerance = 0.01) => {
         group => group.some(other => pointsMatch(other.location, person.location, tolerance))
       );
       // add them to that group if it exists
-      if (groupIndex > 0)
+      if (groupIndex >= 0)
         return insertToGroup(groups, groupIndex, person)
       // otherwise start a new group
       return [...groups, [person]]
