@@ -5,7 +5,7 @@ const nextConfig = {
   reactStrictMode: true,
   async rewrites() {
     return {
-      beforeFiles: [
+      afterFiles: [
         {
           source: "/api/:path*",
           destination: `${API_URL}:path*`,
