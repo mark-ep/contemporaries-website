@@ -62,7 +62,7 @@ export default function About() {
                   and Queens at school. At best, we could arrange them in
                   order and say that Edward III succeeded to the throne of
                   Edward II and both lived in times of Chaucer. But already
-                  couldn't confidently say who ruled over Kyiv at the same
+                  couldn't confidently say who ruled in Kyiv at the same
                   time. Same goes for contemporaneous Japanese shoguns or
                   Persian poets.
                 </Text>
