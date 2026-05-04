@@ -26,6 +26,7 @@ export default function Home() {
                   <Stack direction="row" divider={<Divider mx="2ex" />} w="min-content">
                     <Link href="/about">About</Link>
                     <Link href="/about#contact">Contact</Link>
+                    <Link href="/dashboard">Dashboard</Link>
                   </Stack>
                 </Stack>
               </Stack>
