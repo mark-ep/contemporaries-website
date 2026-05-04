@@ -53,7 +53,7 @@ export default function Dashboard({ stats }: { stats: DashboardStats }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <ImageStack image={`${process.env.API_ROOT}mosaic/`} alt="mosaic" minH="100vh">
+        <ImageStack image="/api/mosaic/" alt="mosaic" minH="100vh">
           <Container maxW="container.lg" py="8">
             <Stack spacing="6" p="6" rounded="xl" bg="blackAlpha.700">
               <Heading>Dashboard</Heading>
@@ -65,17 +65,23 @@ export default function Dashboard({ stats }: { stats: DashboardStats }) {
                   ['Aliases', stats.aliases],
                   ['Countries', stats.countries],
                   ['Occupations', stats.occupations],
-                  ['Locations', stats.locations],
-                  ['Dirty Locations', stats.dirty_locations],
-                  ['Dirty Occupations', stats.dirty_occupations],
-                ] as [string, number][]).map(([label, value]) => (
+                  ['Locations', stats.locations],,
+                ] as [string, number][]).map(([label, value]) => {
+                  let badge = null;
+                  if (label == "Locations") {
+                    badge = stats.dirty_locations;
+                  } else if (label == "Occupations") {
+                    badge = stats.dirty_occupations;
+                  }
+                  return (
                   <Box key={label} p="4" rounded="md" bg="whiteAlpha.100">
                     <Stat>
                       <StatLabel>{label}</StatLabel>
                       <StatNumber>{formatNumber(value)}</StatNumber>
+                      {badge !== null && <Badge colorScheme="gray" gap="0">{badge} pending</Badge>}
                     </Stat>
                   </Box>
-                ))}
+                )})}
               </SimpleGrid>
 
               <Divider />
