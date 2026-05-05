@@ -1,9 +1,11 @@
-import { Box, Button, ButtonGroup, Checkbox, Flex, FormControl, FormErrorMessage, FormLabel, Input, Stack, useDisclosure } from "@chakra-ui/react";
+import { Box, Button, ButtonGroup, Checkbox, Flex, FormControl, FormErrorMessage, FormLabel, IconButton, Input, Stack, useDisclosure } from "@chakra-ui/react";
 import { Form, Formik } from "formik";
-import { FaSearch, FaUndo } from "react-icons/fa";
+import { FaBackspace, FaSearch, FaUndo } from "react-icons/fa";
 import SearchProvider, { useOnSearch } from "../contexts/SearchProvider";
 import { DropdownField } from "./Dropdown";
 import { SearchBox } from './SearchBox';
+import { useRouter } from "next/router";
+
 
 
 export const AdvancedSearch = ({ ...props }) => {
@@ -27,14 +29,19 @@ export const AdvancedSearch = ({ ...props }) => {
 
 export const AdvancedSearchForm = ({ onSubmit }) => {
   const onSearch = useOnSearch();
+  const router = useRouter();
+  const params = router.query;
+
+  console.log("AdvancedSearchForm params:", params);
+
   return (
     <Formik
       initialValues={{
-        shareCountry: false,
-        shareJob: false,
-        selectedCountries: [],
-        selectedJobs: [],
-        query: ""
+        shareCountry: params.share_country === "1",
+        shareJob: params.share_job === "1",
+        selectedCountries: params.selected_countries ? JSON.parse(params.selected_countries) : [],
+        selectedJobs: params.selected_jobs ? JSON.parse(params.selected_jobs) : [],
+        query: params.query ? params.query.replaceAll("_", " ") : "",
       }}
       onSubmit={async (values) => {
         const { query, shareCountry, shareJob, selectedCountries, selectedJobs } = values;
@@ -59,13 +66,23 @@ export const AdvancedSearchForm = ({ onSubmit }) => {
           <FormControl isInvalid={formik.errors.query && formik.touched.query}>
             <FormLabel fontWeight="bold">Search query:</FormLabel>
             <FormErrorMessage mb="2pt">{formik.errors.query}</FormErrorMessage>
-            <Input
-              {...formik.getFieldProps("query")}
-              placeholder="Name of person"
-              bg="white"
-              color="black"
-              autoFocus
-            />
+            <Flex>
+              <Input
+                {...formik.getFieldProps("query")}
+                placeholder="Name of person"
+                bg="white"
+                color="black"
+                borderRightRadius="none"
+                autoFocus
+              />
+              <IconButton
+                colorScheme="blue"
+                variant="ghost"
+                borderLeftRadius="none"
+                icon={<FaBackspace />}
+                onClick={formik.getFieldHelpers("query").setValue.bind(null, "")}
+              />
+            </Flex>
           </FormControl>
           <FormControl>
             <FormLabel fontWeight="bold">Find contemporaries with matching:</FormLabel>
