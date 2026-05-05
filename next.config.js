@@ -2,6 +2,7 @@
 const API_URL = process.env.API_ROOT || `http://127.0.0.1:8000/api/`
 
 const nextConfig = {
+  staticPageGenerationTimeout: 60 * 5, // 5 minutes
   reactStrictMode: true,
   async rewrites() {
     return {
