@@ -1,3 +1,6 @@
+const fs = require('node:fs');
+const path = require('node:path');
+
 const generateSitemap = (urls) => `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   ${urls.map(url => `
@@ -9,9 +12,9 @@ const generateSitemap = (urls) => `<?xml version="1.0" encoding="UTF-8"?>
   </url>`).join('')}
 </urlset>`;
 
-export async function getServerSideProps({ res }) {
+async function main() {
   const allItems = [];
-  const limit = 1000;
+  const limit = 10000;
   let offset = 0;
 
   while (true) {
@@ -32,14 +35,12 @@ export async function getServerSideProps({ res }) {
     ...allItems.map(item => `${baseUrl}${item}`)
   ];
 
-  const sitemap = generateSitemap(urls);
+  fs.writeFileSync(
+    path.join(process.cwd(), 'public', 'sitemap.xml'),
+    generateSitemap(urls)
+  );
 
-  res.setHeader('Content-Type', 'text/xml');
-  res.setHeader('Cache-Control', 'public, s-maxage=86400, stale-while-revalidate=43200');
-  res.write(sitemap);
-  res.end();
-
-  return { props: {} };
+  console.log('Sitemap generated successfully');
 }
 
-export default function Sitemap() { return null; }
+main();
